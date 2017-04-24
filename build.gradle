@@ -1,0 +1,36 @@
+allprojects {
+    group = 'com.github.mariotaku.ExportablePreferences'
+    version = '0.9.6-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+
+    uploadArchives {
+        repositories {
+            mavenInstaller {
+                pom.version = version
+                pom.groupId = group
+                pom.artifactId = rootProject.name
+            }
+        }
+    }
+}
