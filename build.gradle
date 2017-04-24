@@ -1,6 +1,6 @@
 allprojects {
     group = 'com.github.mariotaku.ExportablePreferences'
-    version = '0.9.6-SNAPSHOT'
+    version = '0.9.6'
 }
 
 subprojects {
